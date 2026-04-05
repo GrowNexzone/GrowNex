@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowNex | Admin Dashboard</title>
+    <!-- Use same fonts and global styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="premium.css">
+    <script src="admin.js" defer></script>
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="login-container" class="admin-login-wrapper">
+        <div class="glass-panel admin-login-box">
+            <div style="text-align: center; margin-bottom: 32px;">
+                <div class="logo-text-graphic-admin" style="display: flex; justify-content: center; align-items: baseline; font-weight: 900; font-size: 4rem; letter-spacing: -2px; filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.5)); user-select: none;">
+                    <span style="color: #a0aec0; background: linear-gradient(to bottom, #ffffff, #64748b); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Grow</span>
+                    <span style="color: #00ff88; text-shadow: 0 0 20px rgba(0,255,136,0.6);">Nex</span>
+                    <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 5px;"><polyline points="18 13 18 6 11 6"></polyline><line x1="4" y1="20" x2="18" y2="6"></line></svg>
+                </div>
+                <h2 style="font-size: 1.5rem; color: var(--text-primary); margin-top: 16px; letter-spacing: 2px;">SECURE DASHBOARD</h2>
+            </div>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button id="login-btn" class="btn btn-primary" style="width: 100%;">Login</button>
+            <p id="login-error" style="color: #ff4d4d; margin-top: 16px; text-align: center; display: none;">Invalid
+                credentials</p>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboard-container" class="dashboard-wrapper" style="display: none;">
+        <header class="dashboard-header glass-panel">
+            <div class="logo" style="display: flex; align-items: center; gap: 12px;">
+                <div class="logo-text-graphic-small" style="display: flex; justify-content: center; align-items: baseline; font-weight: 900; font-size: 2rem; letter-spacing: -1px; filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.4)); user-select: none;">
+                    <span style="color: #a0aec0; background: linear-gradient(to bottom, #ffffff, #64748b); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Grow</span>
+                    <span style="color: #00ff88; text-shadow: 0 0 15px rgba(0,255,136,0.5);">Nex</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 2px;"><polyline points="18 13 18 6 11 6"></polyline><line x1="5" y1="19" x2="18" y2="6"></line></svg>
+                </div>
+                <span class="text-logo" style="font-size: 1.5rem;">Admin</span>
+            </div>
+            <div class="dashboard-actions">
+                <button id="refresh-btn" class="btn btn-outline" style="padding: 8px 16px;">🔄 Refresh</button>
+                <button id="download-csv-btn" class="btn btn-primary" style="padding: 8px 16px;">📥 Download
+                    CSV</button>
+                <button id="logout-btn" class="btn btn-outline"
+                    style="padding: 8px 16px; border-color: #ff4d4d; color: #ff4d4d;">Logout</button>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="controls-bar glass-panel">
+                <input type="text" id="search-input" placeholder="🔍 Search leads (Name, Email, Phone)..."
+                    class="search-bar">
+                <select id="status-filter" class="status-filter">
+                    <option value="All">All Statuses</option>
+                    <option value="New">New</option>
+                    <option value="Contacted">Contacted</option>
+                    <option value="Closed">Closed</option>
+                </select>
+                <span style="color: var(--text-secondary); align-self: center; margin-left: auto;">Auto-refreshing in
+                    <span id="countdown">10</span>s</span>
+            </div>
+
+            <div class="table-container glass-panel">
+                <table class="leads-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Message</th>
+                            <th>Status</th>
+                            <th>Update</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-tbody">
+                        <!-- Leads will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

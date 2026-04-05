@@ -1,0 +1,116 @@
+/* premium.css - Ultra Premium Enhancements */
+/* Dynamic Background grid */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-image: 
+        linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+    pointer-events: none;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(50px); }
+}
+
+/* Floating Animations for Cards */
+.service-card, .feature-item, .why-item {
+    animation: float 6s ease-in-out infinite;
+}
+.service-card:nth-child(2n), .why-item:nth-child(2n) {
+    animation-delay: 1.5s;
+}
+.service-card:nth-child(3n), .why-item:nth-child(3n) {
+    animation-delay: 3s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Enhanced Glassmorphism styling */
+.glass-panel {
+    background: linear-gradient(135deg, rgba(19, 23, 32, 0.8), rgba(10, 12, 16, 0.95));
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 255, 136, 0.1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+    border-color: rgba(0, 255, 136, 0.5);
+    box-shadow: 0 8px 32px 0 rgba(0, 255, 136, 0.2);
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* Text Gradients for super modern look */
+.text-highlight {
+    background: linear-gradient(90deg, #00ff88, #00d4ff, #00ff88);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none; 
+    font-weight: 800;
+    animation: shineText 3s linear infinite;
+}
+
+@keyframes shineText {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Premium Buttons with Shimmer Hover Effects */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    background: #00ff88;
+    color: #0a0c10;
+    border: none;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    transform: rotate(45deg) translateY(-100%);
+    animation: shimmer 3s infinite;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
+}
+
+@keyframes shimmer {
+    100% { transform: rotate(45deg) translateY(100%); }
+}
+
+/* Smooth Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0c10;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 136, 0.3);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 136, 0.8);
+}
