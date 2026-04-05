@@ -2,13 +2,6 @@
 
 const SCRIPT_URL = window.GOOGLE_SCRIPT_URL || '';
 
-// Mock data (fallback if no API connected)
-let mockData = [
-    { row: 2, timestamp: new Date().toISOString(), name: "John Doe", email: "john@example.com", phone: "+91 9876543210", message: "Interested in AI automation.", status: "New" },
-    { row: 3, timestamp: new Date(Date.now() - 86400000).toISOString(), name: "Jane Smith", email: "jane@example.com", phone: "+91 9988776655", message: "Need web development.", status: "Contacted" },
-    { row: 4, timestamp: new Date(Date.now() - 172800000).toISOString(), name: "Raj Kumar", email: "raj@company.in", phone: "+91 9123456789", message: "Graphic design query.", status: "Closed" }
-];
-
 let leadsData = [];
 let refreshTimer = null;
 let countdownInterval = null;
@@ -74,14 +67,7 @@ function initDashboard() {
 
 // Fetch Data
 async function fetchData() {
-    const localLeads = JSON.parse(localStorage.getItem('grownex_leads')) || [];
-    
-    if (localLeads.length > 0) {
-        leadsData = localLeads; // Show real form submissions
-    } else {
-        leadsData = [...mockData]; // Fallback if no real data exists yet
-    }
-    
+    leadsData = JSON.parse(localStorage.getItem('grownex_leads')) || [];
     renderTable();
 }
 
@@ -156,10 +142,6 @@ async function updateRowStatus(rowId, newStatus, oldStatus) {
     if (leadIndex !== -1) {
         localLeads[leadIndex].status = newStatus;
         localStorage.setItem('grownex_leads', JSON.stringify(localLeads));
-    } else {
-        // Fallback for mock data update
-        const mockLead = mockData.find(l => l.row === rowId);
-        if (mockLead) mockLead.status = newStatus;
     }
     
     fetchData();
